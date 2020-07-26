@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.CemeteryDetailFragment">
+
+
+    <TextView
+        android:id="@+id/cemNameTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="cemetery name"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/cemStateTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="cemetery state"
+        app:layout_constraintEnd_toEndOf="@+id/cemNameTv"
+        app:layout_constraintStart_toStartOf="@+id/cemNameTv"
+        app:layout_constraintTop_toBottomOf="@+id/cemNameTv" />
+
+    <TextView
+        android:id="@+id/cemCountyTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="cemetery county"
+        app:layout_constraintEnd_toEndOf="@+id/cemStateTv"
+        app:layout_constraintStart_toStartOf="@+id/cemStateTv"
+        app:layout_constraintTop_toBottomOf="@+id/cemStateTv" />
+
+    <TextView
+        android:id="@+id/cemTownShipTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="cemetery township"
+        app:layout_constraintEnd_toEndOf="@+id/cemCountyTv"
+        app:layout_constraintStart_toStartOf="@+id/cemCountyTv"
+        app:layout_constraintTop_toBottomOf="@+id/cemCountyTv" />
+
+    <TextView
+        android:id="@+id/cemRangeTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="cemetery range"
+        app:layout_constraintEnd_toEndOf="@+id/cemTownShipTv"
+        app:layout_constraintStart_toStartOf="@+id/cemTownShipTv"
+        app:layout_constraintTop_toBottomOf="@+id/cemTownShipTv" />
+
+    <TextView
+        android:id="@+id/cemSectionTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="cemetery section"
+        app:layout_constraintEnd_toEndOf="@+id/cemRangeTv"
+        app:layout_constraintStart_toStartOf="@+id/cemRangeTv"
+        app:layout_constraintTop_toBottomOf="@+id/cemRangeTv" />
+
+    <TextView
+        android:id="@+id/cemSpotTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="cemetery spot"
+        app:layout_constraintEnd_toEndOf="@+id/cemSectionTv"
+        app:layout_constraintStart_toStartOf="@+id/cemSectionTv"
+        app:layout_constraintTop_toBottomOf="@+id/cemSectionTv" />
+
+    <TextView
+        android:id="@+id/cemGPSTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="cemetery gps location"
+        app:layout_constraintEnd_toEndOf="@+id/cemSpotTv"
+        app:layout_constraintStart_toStartOf="@+id/cemSpotTv"
+        app:layout_constraintTop_toBottomOf="@+id/cemSpotTv" />
+
+    <TextView
+        android:id="@+id/cemFirstYearTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="cemetery first year"
+        app:layout_constraintEnd_toEndOf="@+id/cemGPSTv"
+        app:layout_constraintStart_toStartOf="@+id/cemGPSTv"
+        app:layout_constraintTop_toBottomOf="@+id/cemGPSTv" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/editFAB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="56dp"
+        android:layout_marginBottom="36dp"
+        android:src="@drawable/ic_baseline_edit_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

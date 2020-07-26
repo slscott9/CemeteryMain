@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/cemeteryListFragment">
+
+    <fragment
+        android:id="@+id/cemeteryListFragment"
+        android:name="hfad.com.cemeteryapp1.fragments.CemeteryListFragment"
+        android:label="fragment_cemetery_list"
+        tools:layout="@layout/fragment_cemetery_list" >
+        <action
+            android:id="@+id/action_cemeteryListFragment_to_cemeteryDetailFragment"
+            app:destination="@id/cemeteryDetailFragment" />
+        <action
+            android:id="@+id/action_cemeteryListFragment_to_createFragment"
+            app:destination="@id/createFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cemeteryDetailFragment"
+        android:name="hfad.com.cemeteryapp1.fragments.CemeteryDetailFragment"
+        android:label="fragment_cemetery_detail"
+        tools:layout="@layout/fragment_cemetery_detail" >
+        <action
+            android:id="@+id/action_cemeteryDetailFragment_to_graveListFragment"
+            app:destination="@id/graveListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/graveDetailFragment"
+        android:name="hfad.com.cemeteryapp1.fragments.GraveDetailFragment"
+        android:label="fragment_grave_detail"
+        tools:layout="@layout/fragment_grave_detail" />
+    <fragment
+        android:id="@+id/graveListFragment"
+        android:name="hfad.com.cemeteryapp1.fragments.GraveListFragment"
+        android:label="fragment_grave_list"
+        tools:layout="@layout/fragment_grave_list" >
+        <action
+            android:id="@+id/action_graveListFragment_to_graveDetailFragment"
+            app:destination="@id/graveDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createFragment"
+        android:name="hfad.com.cemeteryapp1.fragments.CreateFragment"
+        android:label="fragment_create"
+        tools:layout="@layout/fragment_create" >
+        <action
+            android:id="@+id/action_createFragment_to_cemeteryListFragment"
+            app:destination="@id/cemeteryListFragment" />
+    </fragment>
+</navigation>
