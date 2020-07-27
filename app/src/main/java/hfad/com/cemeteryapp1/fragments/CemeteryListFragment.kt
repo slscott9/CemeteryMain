@@ -60,7 +60,7 @@ class CemeteryListFragment : Fragment() {
 
         cemeteryViewModel.cemeteries.observe(viewLifecycleOwner, Observer {
             it?.let {
-                adapter.data = it
+                adapter.submitList(it) //list adpater class method to update list
             }
         })
 

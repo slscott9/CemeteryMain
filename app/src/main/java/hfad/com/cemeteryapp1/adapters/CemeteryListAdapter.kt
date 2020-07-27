@@ -14,20 +14,10 @@ import hfad.com.cemeteryapp1.R
 import hfad.com.cemeteryapp1.database.Cemetery
 
 
-class CemeteryListAdapter: RecyclerView.Adapter<CemeteryListAdapter.ViewHolder>(){
-    var data = listOf<Cemetery>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
-
-    //var data = listOf<Cemetery>(Cemetery(1, "name", "name","name","name","name","name","name","name","name"))
-
-    override fun getItemCount() = data.size
-
+class CemeteryListAdapter: ListAdapter<Cemetery, CemeteryListAdapter.ViewHolder>(CemeteryDiffUtilCallback()){
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = data[position]
+        val item = getItem(position) //provided by ListAdater class
         holder.name.text = item.cemeteryName
         holder.location.text = item.cemeteryLocation
 //        holder.state.text = item.cemeteryState
@@ -37,7 +27,6 @@ class CemeteryListAdapter: RecyclerView.Adapter<CemeteryListAdapter.ViewHolder>(
 //        holder.name.text = item.section
 //        holder.name.text = item.spot
 //        holder.firstYear.text =
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -60,4 +49,15 @@ class CemeteryListAdapter: RecyclerView.Adapter<CemeteryListAdapter.ViewHolder>(
 //        val gps: ImageView = itemView.findViewById(R.id.cemGPSTv)
 //        val firstYear: ImageView = itemView.findViewById(R.id.cemFirstYearTv)
     }
+}
+
+class CemeteryDiffUtilCallback: DiffUtil.ItemCallback<Cemetery>(){
+    override fun areItemsTheSame(oldItem: Cemetery, newItem: Cemetery): Boolean {
+        return oldItem.id == newItem.id
+    }
+
+    override fun areContentsTheSame(oldItem: Cemetery, newItem: Cemetery): Boolean {
+        return oldItem == newItem
+    }
+
 }
