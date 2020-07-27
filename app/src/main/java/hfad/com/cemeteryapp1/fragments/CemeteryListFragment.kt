@@ -64,7 +64,7 @@ class CemeteryListFragment : Fragment() {
             }
         })
 
-        binding.cemeterListRecyclerView.adapter = adapter
+        binding.cemeterListRecyclerView.adapter = adapter //testt
 
 
         //6. our layout needs to know about the view model. Then we can reference functions and data in the view model from the layout, to display live data. do this in xml file (cem_list)
