@@ -24,22 +24,15 @@ class CreateFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        setHasOptionsMenu(true)
 
+        setHasOptionsMenu(true)
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_create, container, false)
 
         val application = requireNotNull(this.activity).application
-
         val dataSource = CemeteryDatabase.getInstance(application).cemeteryDao //MIGHT BE A PROBLEM   DIFFERENT FROM EXAMPLES
-
         val viewModelFactory = CreateViewModelFactory(dataSource)
 
         createViewModel = ViewModelProvider(this, viewModelFactory).get(CreateViewModel::class.java)
-
-        //add binding
-
-
-
 
         return binding.root
     }
@@ -50,10 +43,6 @@ class CreateFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-
-
-
         return NavigationUI.onNavDestinationSelected(item!!, view!!.findNavController())|| super.onOptionsItemSelected(item)
     }
 
@@ -77,5 +66,4 @@ class CreateFragment : Fragment() {
         createViewModel.onUpdate(cemetery)
         Log.i("CreateFragment", "onoptionsitemselected")
     }
-
 }
