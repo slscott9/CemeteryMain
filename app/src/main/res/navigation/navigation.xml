@@ -12,11 +12,21 @@
         tools:layout="@layout/fragment_cemetery_list" >
         <action
             android:id="@+id/action_cemeteryListFragment_to_cemeteryDetailFragment"
-            app:destination="@id/cemeteryDetailFragment" />
+            app:destination="@id/cemeteryDetailFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@android:anim/fade_out"
+            app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_cemeteryListFragment_to_createFragment"
-            app:destination="@id/createFragment" />
+            app:destination="@id/createFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@android:anim/fade_out" />
     </fragment>
+
+
+
     <fragment
         android:id="@+id/cemeteryDetailFragment"
         android:name="hfad.com.cemeteryapp1.fragments.CemeteryDetailFragment"
@@ -25,7 +35,12 @@
         <action
             android:id="@+id/action_cemeteryDetailFragment_to_graveListFragment"
             app:destination="@id/graveListFragment" />
+        <argument
+            android:name="id"
+            app:argType="integer" />
     </fragment>
+
+
     <fragment
         android:id="@+id/graveDetailFragment"
         android:name="hfad.com.cemeteryapp1.fragments.GraveDetailFragment"
@@ -40,6 +55,8 @@
             android:id="@+id/action_graveListFragment_to_graveDetailFragment"
             app:destination="@id/graveDetailFragment" />
     </fragment>
+
+
     <fragment
         android:id="@+id/createFragment"
         android:name="hfad.com.cemeteryapp1.fragments.CreateFragment"
@@ -47,6 +64,9 @@
         tools:layout="@layout/fragment_create" >
         <action
             android:id="@+id/action_createFragment_to_cemeteryListFragment"
-            app:destination="@id/cemeteryListFragment" />
+            app:destination="@id/cemeteryListFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@android:anim/fade_out" />
     </fragment>
+
 </navigation>

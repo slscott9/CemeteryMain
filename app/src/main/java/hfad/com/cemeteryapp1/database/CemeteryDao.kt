@@ -25,5 +25,8 @@ interface CemeteryDao {
     @Query("SELECT * FROM cemeteries ORDER BY id DESC LIMIT 1")
     fun getCemetery(): Cemetery?
 
+    @Query("SELECT * FROM cemeteries WHERE id = :id")
+    fun getCemeteryWithId(id: Int): Cemetery?
+
 
 }

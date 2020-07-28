@@ -1,6 +1,5 @@
 package hfad.com.cemeteryapp1.fragments
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -9,9 +8,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import hfad.com.cemeteryapp1.R
 import hfad.com.cemeteryapp1.adapters.CemeteryListAdapter
+import hfad.com.cemeteryapp1.adapters.CemeteryListener
 import hfad.com.cemeteryapp1.database.CemeteryDatabase
 import hfad.com.cemeteryapp1.databinding.FragmentCemeteryListBinding
 import hfad.com.cemeteryapp1.viewmodels.CemeteryViewModel
@@ -56,7 +57,11 @@ class CemeteryListFragment : Fragment() {
         //5. now that we have a view model we also need to finish setting up our data binding. We also need to connect our view model to our user interface
         binding.lifecycleOwner = this //specify the current activity as the life cycle owner of the binding. This is necessary so that the binding can observe live data updates
 
-        val adapter = CemeteryListAdapter()
+        //15.  pass listener to the adpater so it can set the listener using data binding in our xml list_item
+        val adapter = CemeteryListAdapter(CemeteryListener {
+            id -> cemeteryViewModel.onCemeteryClicked(id) //16. pass the id of the row in recycler view that was clicked to the view model
+            Log.i("CemeteryListFragment", "Callback called id is $id")
+        })
 
         cemeteryViewModel.cemeteries.observe(viewLifecycleOwner, Observer {
             it?.let {
@@ -64,7 +69,16 @@ class CemeteryListFragment : Fragment() {
             }
         })
 
-        binding.cemeterListRecyclerView.adapter = adapter //testt
+        binding.cemeterListRecyclerView.adapter = adapter
+
+
+        //if it(the row number ) is not null then navigate to detail fragment and pass it(the row number)
+        cemeteryViewModel.navigateToCemeteryDetail.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                this.findNavController().navigate(CemeteryListFragmentDirections.actionCemeteryListFragmentToCemeteryDetailFragment(it))
+                cemeteryViewModel.onCemeteryDetailNavigated() //MUST SET THIS OR THE FRAGMENT WILL NOT GO BACK ON BACK BUTTON PRESS
+            }
+        })
 
 
         //6. our layout needs to know about the view model. Then we can reference functions and data in the view model from the layout, to display live data. do this in xml file (cem_list)
@@ -83,11 +97,11 @@ class CemeteryListFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater?.inflate(R.menu.menu_main, menu)
+        inflater.inflate(R.menu.menu_main, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return NavigationUI.onNavDestinationSelected(item!!, view!!.findNavController())|| super.onOptionsItemSelected(item)
+        return NavigationUI.onNavDestinationSelected(item, requireView().findNavController())|| super.onOptionsItemSelected(item)
     }
 
 }

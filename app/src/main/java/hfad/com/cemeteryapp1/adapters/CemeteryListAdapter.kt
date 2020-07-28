@@ -33,7 +33,8 @@ import hfad.com.cemeteryapp1.databinding.CemeteryListItemBinding
             - it is populated with data from our Bind.Util adapters our views will be automatically updated through the binding adapters
          */
 
-class CemeteryListAdapter: ListAdapter<Cemetery, CemeteryListAdapter.ViewHolder>(CemeteryDiffUtilCallback()){ //1.
+//12. we dont define the listener here, instead we let the fragment pass us a listener
+class CemeteryListAdapter(val clickListener: CemeteryListener): ListAdapter<Cemetery, CemeteryListAdapter.ViewHolder>(CemeteryDiffUtilCallback()){ //1.
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder { //2. inflate our list item layout the recycler view will use for each row
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -44,18 +45,21 @@ class CemeteryListAdapter: ListAdapter<Cemetery, CemeteryListAdapter.ViewHolder>
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) { //6. set our ViewGroups views
         val item = getItem(position) //provided by ListAdater class, we now have the object at the position in our list. We can use it to access its properties and set our views with it.
-//        holder.binding.cemNameList.text = item.cemeteryName
-//        holder.binding.cemLocationList.text = item.cemeteryLocation
 
-        holder.bind(item) //9. call the method that binds data to our binding object in list_item xml.
+        holder.bind(item, clickListener) //9. call the method that binds data to our binding object in list_item xml.    13. pass listener to our bind method use alt enter to add parameter to bind method
     }
 
     class ViewHolder (val binding: CemeteryListItemBinding) : RecyclerView.ViewHolder(binding.root){ //7. make binding a val property and pass RecyclerView.ViewHolder the root view (<layout> in list item xml replaced our root view)
 
         //binding.root is the <layout> tag from list_item xml
 
-        fun bind(item: Cemetery){   //8. gives our cemetery <data> binding tag data to bind
+        fun bind(
+            item: Cemetery,
+            clickListener: CemeteryListener
+        ){   //8. gives our cemetery <data> binding tag data to bind
             binding.cemetery = item
+            binding.clickListener = clickListener //14. set the item_list xml's click listener using binding object. We are taking a click listener from the adapter constuctor and passing it all the way dowsn
+                                                    //to each view holder
             binding.executePendingBindings()
         }
     }
@@ -68,9 +72,22 @@ class CemeteryDiffUtilCallback: DiffUtil.ItemCallback<Cemetery>(){
     override fun areItemsTheSame(oldItem: Cemetery, newItem: Cemetery): Boolean {
         return oldItem.id == newItem.id
     }
-
     override fun areContentsTheSame(oldItem: Cemetery, newItem: Cemetery): Boolean {
         return oldItem == newItem
     }
+}
+/*
+    10. create listener interface callback that we will use to have the view holder to inform the fragment that a click happened
+    we use clickListener to give this lambda a name so it is easier to keep track of. This helps us out as we pass the lambda between various classes
 
+    We are also able to give a name to invoking the click listener. Here we are saying that we will call a method called onClick whenever the user clicks on an item
+     - note that our listener does not deal with views at all, its just a fancy way to define a lambda that takes data about a cemetery.
+     - we dont need to carry a reference to a whole cemetery object, since having the id give us the ability to access the data anytime we want from the database
+
+     11. now that we have defined the listener we need to wire it up in data binding
+        - add new variable and name to the data tag and specify the CemeteryListener as its variable
+ */
+
+class CemeteryListener(val clickListener: (id: Int) -> Unit){
+    fun onClick(cemetery: Cemetery) = clickListener(cemetery.id)
 }

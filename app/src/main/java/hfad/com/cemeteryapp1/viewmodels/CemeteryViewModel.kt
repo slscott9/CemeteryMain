@@ -16,9 +16,6 @@ class CemeteryViewModel(val database: CemeteryDao, application: Application) : A
     //When the view model is destroyed, onCleared() is called. We can override this method to cancel all coroutines started by this view model
     private var viewModelJob = Job()
 
-
-
-
     //3. we need a scope for our coroutines to run in. The scope determines what thread the coroutine will run on. It also needs to know about the job
         //- to get the job we ask for an instance of CoroutineScope, and pass in a Dispatcher and a job
                 //our Dispatcher here is Dispatcher.Main - this means coroutines launched in the uiScope will run on the main thread
@@ -29,10 +26,6 @@ class CemeteryViewModel(val database: CemeteryDao, application: Application) : A
     private val cemetery = MutableLiveData<Cemetery>()
 
     val cemeteries = database.getAllCemeteries()
-
-
-
-
 
     //5. we need the cemetery set as soon as possible so we can work with it
     init {
@@ -91,7 +84,6 @@ class CemeteryViewModel(val database: CemeteryDao, application: Application) : A
         }
     }
 
-
     //2. When the view model is destroyed we tell the job to cancel all coroutines, so we dont end up with coroutines that have no wherer to return
     override fun onCleared() {
         super.onCleared()
@@ -113,5 +105,18 @@ class CemeteryViewModel(val database: CemeteryDao, application: Application) : A
                      }
                 }
      */
+
+
+    private val _navigateToCemeteryDetail = MutableLiveData<Int>() //17. from CemeteryListFragment we pass the id of the recycler view row that was clicked into our view model
+    val navigateToCemeteryDetail
+    get() = _navigateToCemeteryDetail //expose l
+
+    fun onCemeteryClicked(id: Int){
+        _navigateToCemeteryDetail.value = id //this sets the value of our live data to the id passed from fragment
+    }
+
+    fun onCemeteryDetailNavigated(){
+        _navigateToCemeteryDetail.value = null
+    }
 
 }
