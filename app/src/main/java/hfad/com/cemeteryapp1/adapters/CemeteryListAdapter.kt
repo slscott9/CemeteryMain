@@ -9,6 +9,7 @@ import hfad.com.cemeteryapp1.database.Cemetery
 import hfad.com.cemeteryapp1.databinding.CemeteryListItemBinding
 
 /*
+    changeeee
         1. We use data binding in the list_item xml it has a reference to our database
         2. we need to make the adapter log data to the layout using data binding now
 
