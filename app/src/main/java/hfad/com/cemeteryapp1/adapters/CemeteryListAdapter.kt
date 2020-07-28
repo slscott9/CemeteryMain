@@ -81,7 +81,7 @@ class CemeteryDiffUtilCallback: DiffUtil.ItemCallback<Cemetery>(){
     we use clickListener to give this lambda a name so it is easier to keep track of. This helps us out as we pass the lambda between various classes
 
     We are also able to give a name to invoking the click listener. Here we are saying that we will call a method called onClick whenever the user clicks on an item
-     - note that our listener does not deal with views at all, its just a fancy way to define a lambda that takes data about a cemetery.
+     - NOTE that our listener does not deal with views at all, its just a fancy way to define a lambda that takes data about a cemetery.
      - we dont need to carry a reference to a whole cemetery object, since having the id give us the ability to access the data anytime we want from the database
 
      11. now that we have defined the listener we need to wire it up in data binding
@@ -89,5 +89,8 @@ class CemeteryDiffUtilCallback: DiffUtil.ItemCallback<Cemetery>(){
  */
 
 class CemeteryListener(val clickListener: (id: Int) -> Unit){
-    fun onClick(cemetery: Cemetery) = clickListener(cemetery.id)
+    fun onClick(cemetery: Cemetery){
+        clickListener(cemetery.id)
+    }
+
 }
