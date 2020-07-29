@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.CreateGraveFragment">
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <EditText
+                android:id="@+id/cemeteryIdEt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="id" />
+
+            <EditText
+                android:id="@+id/firstNameEt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="@+id/cemeteryIdEt"
+                app:layout_constraintStart_toStartOf="@+id/cemeteryIdEt"
+                app:layout_constraintTop_toBottomOf="@id/cemeteryIdEt"
+                tools:text="first name" />
+
+            <EditText
+                android:id="@+id/lastNameet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="@+id/firstNameEt"
+
+                app:layout_constraintStart_toStartOf="@+id/firstNameEt"
+                app:layout_constraintTop_toBottomOf="@+id/firstNameEt"
+                tools:text="last name" />
+
+            <EditText
+                android:id="@+id/bornEt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="@+id/lastNameet"
+
+                app:layout_constraintStart_toStartOf="@+id/lastNameet"
+                app:layout_constraintTop_toBottomOf="@+id/lastNameet"
+                tools:text="born" />
+
+            <EditText
+                android:id="@+id/deathYearEt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="@+id/bornEt"
+                app:layout_constraintStart_toStartOf="@+id/bornEt"
+                app:layout_constraintTop_toBottomOf="@+id/bornEt"
+                tools:text="death year" />
+
+            <EditText
+                android:id="@+id/marriageYearEt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="@+id/deathYearEt"
+                app:layout_constraintStart_toStartOf="@+id/deathYearEt"
+                app:layout_constraintTop_toBottomOf="@+id/deathYearEt"
+                tools:text="marriage year" />
+
+            <EditText
+                android:id="@+id/commentEt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="@+id/marriageYearEt"
+                app:layout_constraintStart_toStartOf="@+id/marriageYearEt"
+                app:layout_constraintTop_toBottomOf="@+id/marriageYearEt"
+                tools:text="comment" />
+
+            <EditText
+                android:id="@+id/graveNumEt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="@+id/commentEt"
+                app:layout_constraintStart_toStartOf="@+id/commentEt"
+                app:layout_constraintTop_toBottomOf="@+id/commentEt"
+                tools:text="grave Number" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

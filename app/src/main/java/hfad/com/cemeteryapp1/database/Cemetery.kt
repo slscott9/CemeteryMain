@@ -1,8 +1,6 @@
 package hfad.com.cemeteryapp1.database
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
 
 @Entity(tableName = "cemeteries")
 data class Cemetery(
@@ -38,5 +36,38 @@ data class Cemetery(
 
     @ColumnInfo(name = "gps")
     val gps: String? =""
-) {
-}
+)
+
+@Entity
+data class Grave(
+
+    @PrimaryKey(autoGenerate = false)
+    val graveId:Int? = 0,
+
+    @ColumnInfo(name = "first_name")
+    val first: String? = "",
+
+    @ColumnInfo(name = "last_name")
+    val last: String? ="",
+
+    @ColumnInfo(name = "born_data")
+    val born: String? ="",
+
+    @ColumnInfo(name = "death_data")
+    val death: String? = "",
+
+    @ColumnInfo(name = "married")
+    val married: String? = "",
+
+    @ColumnInfo(name = "comment")
+    val comment: String? = "",
+
+    @ColumnInfo(name = "grave_number")
+    val graveNumber: String? = ""
+)
+
+data class CemeteryWithGraves(
+    @Embedded val cemetery: Cemetery,
+    @Relation(parentColumn = "id", entityColumn = "graveId")
+    val graves: List<Grave>
+){}

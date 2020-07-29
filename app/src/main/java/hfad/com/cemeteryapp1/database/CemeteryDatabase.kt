@@ -10,7 +10,10 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@Database(entities = [Cemetery::class], version = 2, exportSchema = false)
+
+//MAKE SURE TO SPECIFY EACH ENTITY!!!!
+
+@Database(entities = [Cemetery::class, Grave::class], version = 12, exportSchema = false)
 abstract class CemeteryDatabase: RoomDatabase() {
 
     abstract val cemeteryDao: CemeteryDao

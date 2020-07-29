@@ -14,6 +14,7 @@ import hfad.com.cemeteryapp1.database.CemeteryDatabase
 import hfad.com.cemeteryapp1.databinding.FragmentCreateBinding
 import hfad.com.cemeteryapp1.viewmodels.CreateViewModel
 import hfad.com.cemeteryapp1.viewmodels.CreateViewModelFactory
+import kotlinx.android.synthetic.main.fragment_create_grave.*
 
 class CreateFragment : Fragment() {
 
@@ -50,6 +51,7 @@ class CreateFragment : Fragment() {
         super.onStop()
 
         val name = binding.nameEditText.text.toString()
+        val location = binding.locationEditText.text.toString()
         val state = binding.stateEditText.text.toString()
         val county = binding.countyEditText.text.toString()
         val townShip = binding.townshipEditText.text.toString()
@@ -58,8 +60,9 @@ class CreateFragment : Fragment() {
         val spot = binding.spotEditText.text.toString()
         val gps = binding.gpsEditText.text.toString()
         val firstYear = binding.firstYearEditText.text.toString()
+        val cemeteryId = cemeteryIdEt
 
-        val cemetery = Cemetery(cemeteryName = name, cemeteryState = state, cemeteryCounty = county,
+        val cemetery = Cemetery(cemeteryLocation = location, cemeteryName = name, cemeteryState = state, cemeteryCounty = county,
             township = townShip, range = range, section = section, spot = spot,
             gps = gps, firstYear = firstYear)
 

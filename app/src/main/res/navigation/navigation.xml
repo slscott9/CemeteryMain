@@ -8,21 +8,15 @@
     <fragment
         android:id="@+id/cemeteryListFragment"
         android:name="hfad.com.cemeteryapp1.fragments.CemeteryListFragment"
-        android:label="fragment_cemetery_list"
-        tools:layout="@layout/fragment_cemetery_list" >
-        <action
-            android:id="@+id/action_cemeteryListFragment_to_cemeteryDetailFragment"
-            app:destination="@id/cemeteryDetailFragment"
-            app:enterAnim="@anim/fragment_close_enter"
-            app:exitAnim="@anim/fragment_close_exit"
-            app:popEnterAnim="@anim/fragment_fade_enter"
-            app:popExitAnim="@android:anim/fade_out"
-            app:popUpToInclusive="false" />
+        tools:layout="@layout/fragment_cemetery_list">
         <action
             android:id="@+id/action_cemeteryListFragment_to_createFragment"
             app:destination="@id/createFragment"
             app:enterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_cemeteryListFragment_to_cemeteryDetailFragment"
+            app:destination="@id/cemeteryDetailFragment" />
     </fragment>
 
 
@@ -38,6 +32,9 @@
         <argument
             android:name="id"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_cemeteryDetailFragment_to_createGraveFragment"
+            app:destination="@id/createGraveFragment" />
     </fragment>
 
 
@@ -68,5 +65,10 @@
             app:enterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@android:anim/fade_out" />
     </fragment>
+    <fragment
+        android:id="@+id/createGraveFragment"
+        android:name="hfad.com.cemeteryapp1.fragments.CreateGraveFragment"
+        android:label="fragment_create_grave"
+        tools:layout="@layout/fragment_create_grave" />
 
 </navigation>

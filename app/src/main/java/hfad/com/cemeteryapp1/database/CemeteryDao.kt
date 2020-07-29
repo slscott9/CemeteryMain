@@ -28,5 +28,9 @@ interface CemeteryDao {
     @Query("SELECT * FROM cemeteries WHERE id = :id")
     fun getCemeteryWithId(id: Int): Cemetery?
 
+    @Transaction
+    @Query("SELECT * FROM cemeteries")
+    fun getCemeteryWithGraves(): List<CemeteryWithGraves>
+
 
 }
