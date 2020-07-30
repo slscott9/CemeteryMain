@@ -1,9 +1,11 @@
 package hfad.com.cemeteryapp1.viewmodels
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import hfad.com.cemeteryapp1.database.Cemetery
 import hfad.com.cemeteryapp1.database.CemeteryDao
+import hfad.com.cemeteryapp1.database.Grave
 import kotlinx.coroutines.*
 
 /*
@@ -47,71 +49,73 @@ import kotlinx.coroutines.*
 
             17. from CemeteryListFragment we pass the id of the recycler view row that was clicked into our view model
  */
+//When the view model is destroyed, onCleared() is called. We can override this method to cancel all coroutines started by this view model
 
-class CemeteryViewModel(val database: CemeteryDao, application: Application) : AndroidViewModel(application){
-    //1.
-    //When the view model is destroyed, onCleared() is called. We can override this method to cancel all coroutines started by this view model
-    private var viewModelJob = Job()
+class CemeteryViewModel(val database: CemeteryDao, application: Application, val id: Int?) : AndroidViewModel(application){
 
-    //3.
-    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+    private var viewModelJob = Job() //1.
+    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)     //3.
 
-    //4.
-    private val cemetery = MutableLiveData<Cemetery>()
+    private val _cemetery = MutableLiveData<Cemetery>()      //4.
+    val cemetery: LiveData<Cemetery>
+        get() = _cemetery
 
     val cemeteries = database.getAllCemeteries()
+    val cemeteryWithGraves = database.getCemeteryGraves(id)
 
-    //5. we need the cemetery set as soon as possible so we can work with it
-    init {
-        initializeCemetery()
+
+    private val _cemeteryItemNumber = MutableLiveData<Int>() //17. from CemeteryListFragment we pass the id of the recycler view row that was clicked into our view model
+    val cemeteryItemNumber
+    get() = _cemeteryItemNumber //expose l
+
+    fun onCemeteryClicked(id: Int){
+        _cemeteryItemNumber.value = id //this sets the value of our live data to the id passed from fragment
     }
 
-    //6. we are using a coroutine to get cemetery from the database, so that we are not blocking the ui while waiting for the result
-    private fun initializeCemetery(){
+    fun onCemeteryDetailNavigated(){
+        _cemeteryItemNumber.value = null
+    }
 
+
+    //we use this method from CemeteryDetailFragment to get the correct cemetery that was chosen from recycler view.
+    //We use the cemetery variable to display the cemetery properties with data binding from cemeteryDetail xml
+    fun initializeCemetery(id: Int){
         uiScope.launch {
-            cemetery.value = getCemeteryFromDatabase() //we want to make sure that this method does not block, and we want to return a cemetery or null
+            _cemetery.value = getCemeteryWithId(id)
         }
     }
 
-    //7. we mark it as suspend, because we want to call it from inside the coroutine, and not block the main thread and we want to return a Cemetery or null
-    private suspend fun getCemeteryFromDatabase(): Cemetery?{
-        //so how do we get the cemetery to return? We create another coroutine with the IO context, using the IO dispatcher
+    private suspend fun getCemeteryWithId(id: Int): Cemetery? {
+        return withContext(Dispatchers.IO) {
+            val cemetery = database.getCemeteryWithId(id)
 
-        return withContext(Dispatchers.IO){
-            var cemetery = database.getCemetery()
-            if(cemetery == null){
-                cemetery = null
-            }
             cemetery
         }
     }
-//
-//    fun onCreateCemetery(){
-//        uiScope.launch {
-//            val newCem = Cemetery()
-//            insert(newCem)
-//            cemetery.value = getCemeteryFromDatabase()
-//        }
-//    }
 
-    private suspend fun insert(cemetery: Cemetery){
-        withContext(Dispatchers.IO){
-            database.insertCemetery(cemetery)
-        }
-    }
 
-    fun onUpdateCemetery(){
+    fun onUpdate(cemetery: Cemetery){
         uiScope.launch {
-            val newCem = Cemetery()
-            update(newCem)
-            cemetery.value = getCemeteryFromDatabase()
+            update(cemetery)
         }
     }
-
     private suspend fun update(cemetery: Cemetery){
         withContext(Dispatchers.IO){
-            database.updateCemetery(cemetery)
+            database.insertCemetery(cemetery)
+            Log.i("CreateViewModel", "update database")
+
+        }
+    }
+
+    fun insert(grave: Grave){
+        uiScope.launch {
+            insertGrave(grave)
+        }
+    }
+
+    private suspend  fun insertGrave(grave: Grave){
+        withContext(Dispatchers.IO){
+            database.insertGrave(grave)
         }
     }
 
@@ -121,17 +125,59 @@ class CemeteryViewModel(val database: CemeteryDao, application: Application) : A
         viewModelJob.cancel()
     }
 
-    private val _cemeteryItemNumber = MutableLiveData<Int>() //17. from CemeteryListFragment we pass the id of the recycler view row that was clicked into our view model
-    val navigateToCemeteryDetail
-    get() = _cemeteryItemNumber //expose l
 
-    fun onCemeteryClicked(id: Int){
-        _cemeteryItemNumber.value = id //this sets the value of our live data to the id passed from fragment
 
-    }
 
-    fun onCemeteryDetailNavigated(){
-        _cemeteryItemNumber.value = null
-    }
 
+//STILL WORKS WITHOUT ANY OF THIS
+//    private suspend fun insert(cemetery: Cemetery){
+//        withContext(Dispatchers.IO){
+//            database.insertCemetery(cemetery)
+//        }
+//    }
+//
+//    fun onUpdateCemetery(){
+//        uiScope.launch {
+//            val newCem = Cemetery()
+//            update(newCem)
+//            cemetery.value = getCemeteryFromDatabase()
+//        }
+//    }
+//
+//    private suspend fun update(cemetery: Cemetery){
+//        withContext(Dispatchers.IO){
+//            database.updateCemetery(cemetery)
+//        }
+//    }
+
+    //6. we are using a coroutine to get cemetery from the database, so that we are not blocking the ui while waiting for the result
+//    private fun initializeCemetery(){
+//
+//        uiScope.launch {
+//            cemetery.value = getCemeteryFromDatabase() //we want to make sure that this method does not block, and we want to return a cemetery or null
+//            Log.i(
+//                "CemeteryViewModel",
+//                "Called initializeCemetery in init cemetery.name is"
+//            )
+//        }
+//    }
+
+//    //7. we mark it as suspend, because we want to call it from inside the coroutine, and not block the main thread and we want to return a Cemetery or null
+//    private suspend fun getCemeteryFromDatabase(): Cemetery?{
+//        //so how do we get the cemetery to return? We create another coroutine with the IO context, using the IO dispatcher
+//
+//        return withContext(Dispatchers.IO){
+//            val cemetery = database.getCemetery()
+//
+//            cemetery
+//        }
+//    }
+//
+//    fun onCreateCemetery(){
+//        uiScope.launch {
+//            val newCem = Cemetery()
+//            insert(newCem)
+//            cemetery.value = getCemeteryFromDatabase()
+//        }
+//    }
 }

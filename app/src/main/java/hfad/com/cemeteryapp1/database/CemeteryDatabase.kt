@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 
 //MAKE SURE TO SPECIFY EACH ENTITY!!!!
 
-@Database(entities = [Cemetery::class, Grave::class], version = 12, exportSchema = false)
+@Database(entities = [Cemetery::class, Grave::class], version = 28, exportSchema = false)
 abstract class CemeteryDatabase: RoomDatabase() {
 
     abstract val cemeteryDao: CemeteryDao

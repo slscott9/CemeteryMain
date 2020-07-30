@@ -4,6 +4,8 @@ import android.widget.TextView
 import androidx.databinding.Bindable
 import androidx.databinding.BindingAdapter
 import hfad.com.cemeteryapp1.database.Cemetery
+import hfad.com.cemeteryapp1.database.Grave
+import org.w3c.dom.Text
 
 /*
     We used binding to set our views in the adapter's ViewHolder, so far the code just uses the binding object to avoid calling findViewById
@@ -32,3 +34,10 @@ fun TextView.setCemeteryLocation(item: Cemetery?){
         text = item.cemeteryLocation
     }
 }
+
+//@BindingAdapter("setGraveName")
+//fun TextView.setGraveName(item: CemeteryWithGraves?){
+//    item?.let {
+//        text = item.graves
+//    }
+//}

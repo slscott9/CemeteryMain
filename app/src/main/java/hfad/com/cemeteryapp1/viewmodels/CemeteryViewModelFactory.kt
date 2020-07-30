@@ -7,12 +7,13 @@ import hfad.com.cemeteryapp1.database.CemeteryDao
 
 class CemeteryViewModelFactory(
     private val dataSource: CemeteryDao,
-    private val application: Application
+    private val application: Application,
+    private val id: Int? = null
 ) : ViewModelProvider.Factory {
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(CemeteryViewModel::class.java)) {
-            return CemeteryViewModel(dataSource, application) as T
+            return CemeteryViewModel(dataSource, application, id) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

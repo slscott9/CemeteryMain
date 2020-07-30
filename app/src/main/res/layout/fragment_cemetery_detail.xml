@@ -6,8 +6,8 @@
     
     <data>
         <variable
-            name="cemDetailViewModel"
-            type="hfad.com.cemeteryapp1.viewmodels.CemDetailViewModel" />
+            name="cemeteryViewModel"
+            type="hfad.com.cemeteryapp1.viewmodels.CemeteryViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="@{cemDetailViewModel.cemetery.cemeteryName}"
+            android:text="@{cemeteryViewModel.cemetery.cemeteryName}"
             android:textSize="32sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="@{cemDetailViewModel.cemetery.cemeteryLocation}"
+            android:text="@{cemeteryViewModel.cemetery.cemeteryLocation}"
             app:layout_constraintBaseline_toBaselineOf="@+id/locationText"
             app:layout_constraintStart_toEndOf="@+id/locationText"
             tools:text="cemetery location" />
@@ -43,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="@{cemDetailViewModel.cemetery.cemeteryState}"
+            android:text="@{cemeteryViewModel.cemetery.cemeteryState}"
             app:layout_constraintBaseline_toBaselineOf="@+id/stateText"
             app:layout_constraintStart_toEndOf="@+id/stateText"
             tools:text="state" />
@@ -53,7 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="@{cemDetailViewModel.cemetery.cemeteryCounty}"
+            android:text="@{cemeteryViewModel.cemetery.cemeteryCounty}"
             app:layout_constraintBaseline_toBaselineOf="@+id/countyText"
             app:layout_constraintStart_toEndOf="@+id/countyText"
             tools:text="county" />
@@ -63,7 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="@{cemDetailViewModel.cemetery.township}"
+            android:text="@{cemeteryViewModel.cemetery.township}"
             app:layout_constraintBaseline_toBaselineOf="@+id/townShipText"
             app:layout_constraintStart_toEndOf="@+id/townShipText"
             tools:text="township" />
@@ -73,7 +73,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="@{cemDetailViewModel.cemetery.range}"
+            android:text="@{cemeteryViewModel.cemetery.range}"
             app:layout_constraintBaseline_toBaselineOf="@+id/rangeText"
             app:layout_constraintStart_toEndOf="@+id/rangeText"
             tools:text="range" />
@@ -83,7 +83,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="@{cemDetailViewModel.cemetery.section}"
+            android:text="@{cemeteryViewModel.cemetery.section}"
             app:layout_constraintBaseline_toBaselineOf="@+id/sectionText"
             app:layout_constraintStart_toEndOf="@+id/sectionText"
             tools:text="section" />
@@ -93,7 +93,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="@{cemDetailViewModel.cemetery.spot}"
+            android:text="@{cemeteryViewModel.cemetery.spot}"
             app:layout_constraintBaseline_toBaselineOf="@+id/spotText"
             app:layout_constraintStart_toEndOf="@+id/spotText"
             tools:text="spot" />
@@ -103,7 +103,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="@{cemDetailViewModel.cemetery.gps}"
+            android:text="@{cemeteryViewModel.cemetery.gps}"
             app:layout_constraintBaseline_toBaselineOf="@+id/gpsText"
             app:layout_constraintStart_toEndOf="@+id/gpsText"
             tools:text="gps" />
@@ -113,7 +113,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="@{cemDetailViewModel.cemetery.firstYear}"
+            android:text="@{cemeteryViewModel.cemetery.firstYear}"
             app:layout_constraintBaseline_toBaselineOf="@+id/establishedText"
             app:layout_constraintStart_toEndOf="@+id/establishedText"
             tools:text="first year" />
@@ -204,7 +204,7 @@
             app:layout_constraintTop_toBottomOf="@+id/establishedText" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/editFAB"
+            android:id="@+id/addFAB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="36dp"
@@ -214,19 +214,17 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+            android:id="@+id/graveRecyclerView"
             android:layout_width="408dp"
-            android:layout_height="435dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="24dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.333"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cemGPSTv" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
-
 </layout>

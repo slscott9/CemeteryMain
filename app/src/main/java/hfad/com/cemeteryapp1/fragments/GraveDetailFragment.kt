@@ -5,9 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
 import hfad.com.cemeteryapp1.R
-import hfad.com.cemeteryapp1.viewmodels.CemDetailViewModel
 
 
 class GraveDetailFragment : Fragment() {

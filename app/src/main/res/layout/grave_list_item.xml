@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="200dp"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/graveNameTextview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="stuart" />
+
+        <TextView
+            android:id="@+id/lastTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="TextView"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBaseline_toBaselineOf="@+id/graveNameTextview"
+            app:layout_constraintStart_toEndOf="@+id/graveNameTextview" />
+
+        <TextView
+            android:id="@+id/birthTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="@+id/graveNameTextview"
+            app:layout_constraintTop_toBottomOf="@+id/graveNameTextview" />
+
+        <TextView
+            android:id="@+id/deathTextview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="@+id/birthTextView"
+            app:layout_constraintStart_toStartOf="@+id/birthTextView"
+            app:layout_constraintTop_toBottomOf="@+id/birthTextView" />
+
+        <TextView
+            android:id="@+id/marriageYearTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="@+id/deathTextview"
+            app:layout_constraintStart_toStartOf="@+id/deathTextview"
+            app:layout_constraintTop_toBottomOf="@+id/deathTextview" />
+
+        <TextView
+            android:id="@+id/commentTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="@+id/marriageYearTextView"
+            app:layout_constraintStart_toStartOf="@+id/marriageYearTextView"
+            app:layout_constraintTop_toBottomOf="@+id/marriageYearTextView" />
+
+        <TextView
+            android:id="@+id/graveNumberTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="@+id/commentTextView"
+            app:layout_constraintStart_toStartOf="@+id/commentTextView"
+            app:layout_constraintTop_toBottomOf="@+id/commentTextView" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+

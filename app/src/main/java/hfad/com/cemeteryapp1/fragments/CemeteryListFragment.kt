@@ -17,8 +17,6 @@ import hfad.com.cemeteryapp1.database.CemeteryDatabase
 import hfad.com.cemeteryapp1.databinding.FragmentCemeteryListBinding
 import hfad.com.cemeteryapp1.viewmodels.CemeteryViewModel
 import hfad.com.cemeteryapp1.viewmodels.CemeteryViewModelFactory
-
-
 /*
     1. requreNotNull is kotlin function that throws an illegal argument exception if the value is null
 
@@ -45,13 +43,9 @@ import hfad.com.cemeteryapp1.viewmodels.CemeteryViewModelFactory
 
      7. we can set the variable in our layout, which we access through the binding object to the view model (MAY HAVE TO CLEAN REBUILD if it throws error because binding might not
                                                                                                                     //know about view mmodel yet
-
-
      15.  pass listener to the adpater so it can set the listener using data binding in our xml list_item
 
      16. pass the id of the row in recycler view that was clicked to the view model
-
-
  */
 class CemeteryListFragment : Fragment() {
 
@@ -92,7 +86,7 @@ class CemeteryListFragment : Fragment() {
         binding.cemeterListRecyclerView.adapter = adapter
 
         //if it(the row number ) is not null then navigate to detail fragment and pass it(the row number)
-        cemeteryViewModel.navigateToCemeteryDetail.observe(viewLifecycleOwner, Observer {
+        cemeteryViewModel.cemeteryItemNumber.observe(viewLifecycleOwner, Observer {
             it?.let {
                 this.findNavController().navigate(CemeteryListFragmentDirections.actionCemeteryListFragmentToCemeteryDetailFragment(it))
                 cemeteryViewModel.onCemeteryDetailNavigated() //MUST SET THIS OR THE FRAGMENT WILL NOT GO BACK ON BACK BUTTON PRESS

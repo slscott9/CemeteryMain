@@ -11,17 +11,15 @@
     <string name="firstyear_hint">Enter cemetery first year</string>
     <string name="county_hint">Enter cemetery county</string>
     <string name="title_activity_main2">MainActivity</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-
     <string name="cemetery_tab_title">Cemetery Information</string>
     <string name="grave_tab_title">Graves</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="first">Enter first name</string>
+    <string name="last">Enter last name</string>
+    <string name="born">Enter birth year</string>
+    <string name="died">Enter death year</string>
+    <string name="married">Enter marriage year</string>
+    <string name="comment">Enter comments</string>
+    <string name="gps">Enter gps coordinates</string>
+
+
 </resources>

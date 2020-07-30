@@ -1,73 +1,72 @@
 package hfad.com.cemeteryapp1.database
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Entity(tableName = "cemeteries")
 data class Cemetery(
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "cemetery_id")
     var id: Int = 0,
 
     @ColumnInfo(name = "name")
-    val cemeteryName: String? = "",
+    val cemeteryName: String,
 
     @ColumnInfo(name = "location")
-    val cemeteryLocation: String = "",
+    val cemeteryLocation: String,
 
     @ColumnInfo(name = "state")
-    val cemeteryState: String? = "",
+    val cemeteryState: String,
 
     @ColumnInfo(name = "county")
-    val cemeteryCounty: String? = "",
+    val cemeteryCounty: String,
 
     @ColumnInfo(name = "township")
-    val township: String? ="",
+    val township: String?,
 
     @ColumnInfo(name = "range")
-    val range: String? ="",
+    val range: String?,
 
     @ColumnInfo(name = "spot")
-    val spot: String? ="",
+    val spot: String?,
 
     @ColumnInfo(name = "first_year")
-    val firstYear: String? ="",
+    val firstYear: String?,
 
     @ColumnInfo(name = "section")
-        val section: String? ="",
+        val section: String,
 
     @ColumnInfo(name = "gps")
-    val gps: String? =""
+    val gps: String
 )
 
-@Entity
+@Entity(tableName = "graves")
 data class Grave(
 
-    @PrimaryKey(autoGenerate = false)
-    val graveId:Int? = 0,
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
+
+    @ColumnInfo(name = "cemetery_id")
+    val cemId: Int,
 
     @ColumnInfo(name = "first_name")
-    val first: String? = "",
+    val first: String,
 
     @ColumnInfo(name = "last_name")
     val last: String? ="",
 
     @ColumnInfo(name = "born_data")
-    val born: String? ="",
+    val born: String,
 
     @ColumnInfo(name = "death_data")
-    val death: String? = "",
+    val death: String,
 
     @ColumnInfo(name = "married")
-    val married: String? = "",
+    val married: String,
 
     @ColumnInfo(name = "comment")
-    val comment: String? = "",
+    val comment: String,
 
     @ColumnInfo(name = "grave_number")
-    val graveNumber: String? = ""
+    val graveNumber: String
 )
-
-data class CemeteryWithGraves(
-    @Embedded val cemetery: Cemetery,
-    @Relation(parentColumn = "id", entityColumn = "graveId")
-    val graves: List<Grave>
-){}

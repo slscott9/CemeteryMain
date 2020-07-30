@@ -12,14 +12,14 @@ import hfad.com.cemeteryapp1.R
 import hfad.com.cemeteryapp1.database.Cemetery
 import hfad.com.cemeteryapp1.database.CemeteryDatabase
 import hfad.com.cemeteryapp1.databinding.FragmentCreateBinding
-import hfad.com.cemeteryapp1.viewmodels.CreateViewModel
-import hfad.com.cemeteryapp1.viewmodels.CreateViewModelFactory
+import hfad.com.cemeteryapp1.viewmodels.CemeteryViewModel
+import hfad.com.cemeteryapp1.viewmodels.CemeteryViewModelFactory
 import kotlinx.android.synthetic.main.fragment_create_grave.*
 
 class CreateFragment : Fragment() {
 
     private lateinit var binding: FragmentCreateBinding
-    private lateinit var createViewModel: CreateViewModel
+    private lateinit var createViewModel: CemeteryViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,9 +31,9 @@ class CreateFragment : Fragment() {
 
         val application = requireNotNull(this.activity).application
         val dataSource = CemeteryDatabase.getInstance(application).cemeteryDao //MIGHT BE A PROBLEM   DIFFERENT FROM EXAMPLES
-        val viewModelFactory = CreateViewModelFactory(dataSource)
+        val viewModelFactory = CemeteryViewModelFactory(dataSource, application)
 
-        createViewModel = ViewModelProvider(this, viewModelFactory).get(CreateViewModel::class.java)
+        createViewModel = ViewModelProvider(this, viewModelFactory).get(CemeteryViewModel::class.java)
 
         return binding.root
     }
@@ -60,7 +60,6 @@ class CreateFragment : Fragment() {
         val spot = binding.spotEditText.text.toString()
         val gps = binding.gpsEditText.text.toString()
         val firstYear = binding.firstYearEditText.text.toString()
-        val cemeteryId = cemeteryIdEt
 
         val cemetery = Cemetery(cemeteryLocation = location, cemeteryName = name, cemeteryState = state, cemeteryCounty = county,
             township = townShip, range = range, section = section, spot = spot,
