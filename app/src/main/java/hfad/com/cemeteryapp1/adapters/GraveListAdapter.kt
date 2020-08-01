@@ -59,7 +59,6 @@ class GraveDiffUtilCallback: DiffUtil.ItemCallback<Grave>(){
     }
 
 }
-
 class GraveListListener(val clickListener: (id: Int) -> Unit){
     fun onClick(grave: Grave){
         clickListener(grave.id)

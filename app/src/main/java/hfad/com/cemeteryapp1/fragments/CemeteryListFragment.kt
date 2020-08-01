@@ -17,36 +17,7 @@ import hfad.com.cemeteryapp1.database.CemeteryDatabase
 import hfad.com.cemeteryapp1.databinding.FragmentCemeteryListBinding
 import hfad.com.cemeteryapp1.viewmodels.CemeteryViewModel
 import hfad.com.cemeteryapp1.viewmodels.CemeteryViewModelFactory
-/*
-    1. requreNotNull is kotlin function that throws an illegal argument exception if the value is null
 
-    2. get reference to database via the reference to the dao
-
-    3. Now we can create an instance of the view model factory, we must pass it the data source and the application
-
-    4. now that we have a factory we can ask ViewModelProvider for a view model
-
-    5. now that we have a view model we also need to finish setting up our data binding. We also need to connect our view model to our user interface
-
-    6. our layout needs to know about the view model. Then we can reference functions and data in the view model from the layout, to display live data. do this in xml file (cem_list)
-    6. our layout needs to know about the view model. Then we can reference functions and data in the view model from the layout, to display live data. do this in xml file (cem_list)
-
-                /*
-                    in xml file (cem_list_frag)
-                    1. create a data tag with a variable that references the view model
-                    <data>
-                         <variable
-                                name="cemeteryViewModel"
-                            type="hfad.com.cemeteryapp1.viewmodels.CemeteryViewModel" />
-                    </data>
-                 */
-
-     7. we can set the variable in our layout, which we access through the binding object to the view model (MAY HAVE TO CLEAN REBUILD if it throws error because binding might not
-                                                                                                                    //know about view mmodel yet
-     15.  pass listener to the adpater so it can set the listener using data binding in our xml list_item
-
-     16. pass the id of the row in recycler view that was clicked to the view model
- */
 class CemeteryListFragment : Fragment() {
 
     override fun onCreateView(

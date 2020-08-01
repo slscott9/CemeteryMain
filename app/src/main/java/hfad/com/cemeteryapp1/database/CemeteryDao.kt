@@ -16,16 +16,11 @@ interface CemeteryDao {
     @Insert
     fun insertGrave(grave: Grave)
 
-//    @Delete
-//    fun deleteCemetery()
-
-
 
     @Query("SELECT * FROM cemeteries ORDER BY name DESC")
     fun getAllCemeteries() : LiveData<List<Cemetery>>
 
-//    @Query("SELECT name FROM cemeteries")
-//    fun getAllCemeteryNames() : LiveData<List<Cemetery>>
+
 
     @Query("SELECT * FROM cemeteries ORDER BY cemetery_id DESC LIMIT 1")
     fun getCemetery(): Cemetery
