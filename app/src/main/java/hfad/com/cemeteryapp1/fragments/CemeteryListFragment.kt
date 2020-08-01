@@ -66,7 +66,7 @@ class CemeteryListFragment : Fragment() {
         //3.
         val viewModelFactory = CemeteryViewModelFactory(dataSource, application)
         //4.
-        val cemeteryViewModel = ViewModelProvider(this, viewModelFactory).get(CemeteryViewModel::class.java)
+        val cemeteryViewModel = ViewModelProvider(requireActivity(), viewModelFactory).get(CemeteryViewModel::class.java)
         //7.
         binding.cemeteryViewModel = cemeteryViewModel
         //5.

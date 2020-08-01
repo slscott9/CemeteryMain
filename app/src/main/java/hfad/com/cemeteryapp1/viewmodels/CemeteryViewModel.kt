@@ -92,8 +92,6 @@ class CemeteryViewModel(val database: CemeteryDao, application: Application, val
             cemetery
         }
     }
-
-
     fun onUpdate(cemetery: Cemetery){
         uiScope.launch {
             update(cemetery)

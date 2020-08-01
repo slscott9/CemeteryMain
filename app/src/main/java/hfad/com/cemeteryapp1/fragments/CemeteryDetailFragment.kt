@@ -23,7 +23,7 @@ import kotlin.properties.Delegates
 class CemeteryDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentCemeteryDetailBinding
-    val args: CemeteryDetailFragmentArgs by navArgs()
+    private lateinit var args: CemeteryDetailFragmentArgs
 
 
     override fun onCreateView(
@@ -35,24 +35,22 @@ class CemeteryDetailFragment : Fragment() {
 
         val application = requireNotNull(this.activity).application
 
-        val cemid = args.id
+        args = CemeteryDetailFragmentArgs.fromBundle(requireArguments())
 
         val dataSource = CemeteryDatabase.getInstance(application).cemeteryDao
 
-        val viewModelFactory = CemeteryViewModelFactory(dataSource, application, cemid)
+        val viewModelFactory = CemeteryViewModelFactory(dataSource, application, args.id)
         val cemeteryViewModel = ViewModelProvider(this, viewModelFactory).get(CemeteryViewModel::class.java)
-        cemeteryViewModel.initializeCemetery(cemid)
+        cemeteryViewModel.initializeCemetery(args.id)
 
         binding.cemeteryViewModel = cemeteryViewModel //set the binding variable in xml to our view model class
         binding.lifecycleOwner = this
 
         binding.addFAB.setOnClickListener{
-            view?.findNavController()?.navigate(CemeteryDetailFragmentDirections.actionCemeteryDetailFragmentToCreateGraveFragment(cemid))///
+            view?.findNavController()?.navigate(CemeteryDetailFragmentDirections.actionCemeteryDetailFragmentToCreateGraveFragment(args.id))///
         }
 
-        val adapter = GraveListAdapter()//GraveListListener {
-//                it -> cemeteryViewModel.onCemeteryClicked(it)
-//        })
+        val adapter = GraveListAdapter()
 
         cemeteryViewModel.cemeteryWithGraves.observe(viewLifecycleOwner, Observer {
             it?.let {
@@ -61,11 +59,6 @@ class CemeteryDetailFragment : Fragment() {
         })
 
         binding.graveRecyclerView.adapter = adapter
-
-
-//        cemeteryViewModel.cemeteryItemNumber.observe(this, Observer {
-//
-//        })
         return binding.root
     }
 

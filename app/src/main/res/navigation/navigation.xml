@@ -17,10 +17,8 @@
         <action
             android:id="@+id/action_cemeteryListFragment_to_cemeteryDetailFragment"
             app:destination="@id/cemeteryDetailFragment" >
-            <argument
-                android:name="id"
-                app:argType="integer"
-                 />
+
+
         </action>
     </fragment>
 
@@ -34,13 +32,12 @@
         <action
             android:id="@+id/action_cemeteryDetailFragment_to_graveListFragment"
             app:destination="@id/graveListFragment" />
-        <argument
-            android:name="id"
-            app:argType="integer"
-            android:defaultValue="0" />
         <action
             android:id="@+id/action_cemeteryDetailFragment_to_createGraveFragment"
             app:destination="@id/createGraveFragment" />
+        <argument
+            android:name="id"
+            app:argType="integer" />
 
     </fragment>
 
@@ -77,12 +74,16 @@
         android:name="hfad.com.cemeteryapp1.fragments.CreateGraveFragment"
         android:label="fragment_create_grave"
         tools:layout="@layout/fragment_create_grave" >
-        <argument
-            android:name="id"
-            app:argType="integer" />
         <action
             android:id="@+id/action_createGraveFragment_to_cemeteryDetailFragment"
             app:destination="@id/cemeteryDetailFragment" />
+        <argument
+            android:name="cemId"
+            app:argType="integer" />
     </fragment>
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="hfad.com.cemeteryapp1.MainActivity"
+        android:label="MainActivity" />
 
 </navigation>

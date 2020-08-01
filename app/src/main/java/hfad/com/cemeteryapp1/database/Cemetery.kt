@@ -7,7 +7,7 @@ import androidx.room.*
 data class Cemetery(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "cemetery_id")
-    var id: Int = 0,
+    val id: Int = 0,
 
     @ColumnInfo(name = "name")
     val cemeteryName: String,

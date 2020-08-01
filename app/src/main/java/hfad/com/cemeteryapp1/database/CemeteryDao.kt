@@ -28,10 +28,10 @@ interface CemeteryDao {
 //    fun getAllCemeteryNames() : LiveData<List<Cemetery>>
 
     @Query("SELECT * FROM cemeteries ORDER BY cemetery_id DESC LIMIT 1")
-    fun getCemetery(): Cemetery?
+    fun getCemetery(): Cemetery
 
     @Query("SELECT * FROM cemeteries WHERE cemetery_id = :id")
-    fun getCemeteryWithId(id: Int): Cemetery?
+    fun getCemeteryWithId(id: Int): Cemetery
 
     @Query("SELECT * FROM graves WHERE cemetery_id = :id")
     fun getCemeteryGraves(id: Int?) : LiveData<List<Grave>>
