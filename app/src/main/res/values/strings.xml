@@ -20,6 +20,15 @@
     <string name="married">Enter marriage year</string>
     <string name="comment">Enter comments</string>
     <string name="gps">Enter gps coordinates</string>
+    <string name="coordinates">Coordinates:</string>
+    <string name="established">Established:</string>
+    <string name="spot">Spot:</string>
+    <string name="section">Section:</string>
+    <string name="range">Range:</string>
+    <string name="township">Township:</string>
+    <string name="county">County:</string>
+    <string name="state">State:</string>
+    <string name="location">Location:</string>
 
 
 </resources>

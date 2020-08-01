@@ -10,10 +10,10 @@ data class Cemetery(
     val id: Int = 0,
 
     @ColumnInfo(name = "name")
-    val cemeteryName: String,
+    val cemeteryName: String?,
 
     @ColumnInfo(name = "location")
-    val cemeteryLocation: String,
+    val cemeteryLocation: String?,
 
     @ColumnInfo(name = "state")
     val cemeteryState: String,
@@ -22,16 +22,16 @@ data class Cemetery(
     val cemeteryCounty: String,
 
     @ColumnInfo(name = "township")
-    val township: String?,
+    val township: String,
 
     @ColumnInfo(name = "range")
-    val range: String?,
+    val range: String,
 
     @ColumnInfo(name = "spot")
     val spot: String?,
 
     @ColumnInfo(name = "first_year")
-    val firstYear: String?,
+    val firstYear: String,
 
     @ColumnInfo(name = "section")
         val section: String,

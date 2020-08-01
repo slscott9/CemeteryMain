@@ -23,14 +23,14 @@ import org.w3c.dom.Text
 
 @BindingAdapter("setCemeteryName")
 fun TextView.setCemeteryName(item: Cemetery?){
-    item?.let {
+    item?.cemeteryName?.let {
         text = item.cemeteryName
     }
 }
 
 @BindingAdapter("setCemeteryLocation")
 fun TextView.setCemeteryLocation(item: Cemetery?){
-    item?.let {
+    item?.cemeteryLocation?.let {
         text = item.cemeteryLocation
     }
 }

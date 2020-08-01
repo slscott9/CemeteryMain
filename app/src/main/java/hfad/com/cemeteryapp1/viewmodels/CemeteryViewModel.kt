@@ -117,6 +117,18 @@ class CemeteryViewModel(val database: CemeteryDao, application: Application, val
         }
     }
 
+    fun insert(cemetery: Cemetery){
+        uiScope.launch {
+            insertCemetery(cemetery)
+        }
+    }
+
+    private suspend  fun insertCemetery(cemetery: Cemetery){
+        withContext(Dispatchers.IO){
+            database.insertCemetery(cemetery)
+        }
+    }
+
     //2. When the view model is destroyed we tell the job to cancel all coroutines, so we dont end up with coroutines that have no wherer to return
     override fun onCleared() {
         super.onCleared()

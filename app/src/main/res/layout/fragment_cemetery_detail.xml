@@ -18,12 +18,13 @@
             android:id="@+id/cemNameTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center_horizontal"
             android:text="@{cemeteryViewModel.cemetery.cemeteryName}"
             android:textSize="32sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.2"
+            app:layout_constraintHorizontal_bias="0.3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="cemetery name" />
@@ -65,6 +66,8 @@
             android:layout_marginStart="8dp"
             android:text="@{cemeteryViewModel.cemetery.township}"
             app:layout_constraintBaseline_toBaselineOf="@+id/townShipText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/townShipText"
             tools:text="township" />
 
@@ -100,11 +103,12 @@
 
         <TextView
             android:id="@+id/cemGPSTv"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="@{cemeteryViewModel.cemetery.gps}"
             app:layout_constraintBaseline_toBaselineOf="@+id/gpsText"
+            app:layout_constraintEnd_toEndOf="@+id/cemSpotTv"
             app:layout_constraintStart_toEndOf="@+id/gpsText"
             tools:text="gps" />
 
@@ -121,12 +125,12 @@
 
         <TextView
             android:id="@+id/locationText"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="Location:"
-            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/location"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/cemNameTv"
             app:layout_constraintTop_toBottomOf="@+id/cemNameTv" />
 
         <TextView
@@ -134,7 +138,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="State:"
+            android:textStyle="bold"
+            android:text="@string/state"
             app:layout_constraintStart_toStartOf="@+id/locationText"
             app:layout_constraintTop_toBottomOf="@+id/locationText" />
 
@@ -142,8 +147,9 @@
             android:id="@+id/countyText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="County:"
+            android:layout_marginStart="24dp"
+            android:text="@string/county"
+            android:textStyle="bold"
             app:layout_constraintBaseline_toBaselineOf="@+id/stateText"
             app:layout_constraintStart_toEndOf="@+id/cemStateTv" />
 
@@ -152,7 +158,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:text="Township:"
+            android:textStyle="bold"
+            android:text="@string/township"
             app:layout_constraintBaseline_toBaselineOf="@+id/cemLocationTv"
             app:layout_constraintStart_toEndOf="@+id/cemLocationTv" />
 
@@ -161,25 +168,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Range:"
+            android:textStyle="bold"
+            android:text="@string/range"
             app:layout_constraintStart_toStartOf="@+id/stateText"
             app:layout_constraintTop_toBottomOf="@+id/stateText" />
 
         <TextView
             android:id="@+id/sectionText"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="Section:"
+            android:text="@string/section"
+            android:textStyle="bold"
             app:layout_constraintBaseline_toBaselineOf="@+id/rangeText"
-            app:layout_constraintStart_toEndOf="@+id/cemRangeTv" />
+            app:layout_constraintStart_toStartOf="@+id/countyText" />
 
         <TextView
             android:id="@+id/spotText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="Spot:"
+            android:textStyle="bold"
+            android:text="@string/spot"
             app:layout_constraintBaseline_toBaselineOf="@+id/sectionText"
             app:layout_constraintStart_toEndOf="@+id/cemSectionTv" />
 
@@ -188,7 +197,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Established:"
+            android:textStyle="bold"
+            android:text="@string/established"
             app:layout_constraintStart_toStartOf="@+id/rangeText"
             app:layout_constraintTop_toBottomOf="@+id/rangeText" />
 
@@ -196,12 +206,12 @@
             android:id="@+id/gpsText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="16dp"
-            android:text="Coordinates:"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/establishedText"
-            app:layout_constraintTop_toBottomOf="@+id/establishedText" />
+            android:text="@string/coordinates"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/cemFirstYearTv"
+            app:layout_constraintTop_toBottomOf="@+id/cemSectionTv" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/addFAB"
@@ -209,21 +219,22 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="36dp"
             android:layout_marginBottom="24dp"
+            android:textStyle="bold"
             android:src="@drawable/ic_baseline_add_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/graveRecyclerView"
-            android:layout_width="408dp"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.333"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cemGPSTv" />
+            app:layout_constraintTop_toBottomOf="@+id/gpsText" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
