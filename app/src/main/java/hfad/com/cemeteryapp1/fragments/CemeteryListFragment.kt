@@ -34,16 +34,12 @@ class CemeteryListFragment : Fragment() {
         val dataSource = CemeteryDatabase.getInstance(application).cemeteryDao //2.
         Log.i("MainActivity", "Database created")
 
-        //3.
         val viewModelFactory = CemeteryViewModelFactory(dataSource, application)
-        //4.
+
         val cemeteryViewModel = ViewModelProvider(requireActivity(), viewModelFactory).get(CemeteryViewModel::class.java)
-        //7.
         binding.cemeteryViewModel = cemeteryViewModel
-        //5.
         binding.lifecycleOwner = this //specify the current activity as the life cycle owner of the binding. This is necessary so that the binding can observe live data updates
 
-        //15.
         val adapter = CemeteryListAdapter(CemeteryListener {
             id -> cemeteryViewModel.onCemeteryClicked(id) //16.
             Log.i("CemeteryListFragment", "Callback called id is $id")

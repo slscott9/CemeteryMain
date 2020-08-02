@@ -9,7 +9,6 @@ interface CemeteryDao {
     @Insert
     fun insertCemetery(cemetery:Cemetery)
 
-
     @Update
     fun updateCemetery(cemetery: Cemetery)
 
@@ -21,7 +20,6 @@ interface CemeteryDao {
     fun getAllCemeteries() : LiveData<List<Cemetery>>
 
 
-
     @Query("SELECT * FROM cemeteries ORDER BY cemetery_id DESC LIMIT 1")
     fun getCemetery(): Cemetery
 
@@ -30,6 +28,12 @@ interface CemeteryDao {
 
     @Query("SELECT * FROM graves WHERE cemetery_id = :id")
     fun getCemeteryGraves(id: Int?) : LiveData<List<Grave>>
+
+    @Query("DELETE FROM cemeteries WHERE cemetery_id = :cemeteryID")
+    fun deleteCemetery(cemeteryID: Int)
+
+    @Query("DELETE FROM graves WHERE cemetery_id = :cemeteryID")
+    fun deleteAllGraveWithId(cemeteryID: Int)
 
 
 }

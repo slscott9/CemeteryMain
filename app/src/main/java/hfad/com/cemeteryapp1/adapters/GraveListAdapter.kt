@@ -31,8 +31,6 @@ class GraveListAdapter(): ListAdapter<Grave, GraveListAdapter.ViewHolder>(GraveD
         holder.marriageYear.text = item.married
         holder.comment.text = item.comment
         holder.graveNumber.text = item.graveNumber
-
-
     }
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view){
@@ -49,7 +47,6 @@ class GraveListAdapter(): ListAdapter<Grave, GraveListAdapter.ViewHolder>(GraveD
 
 class GraveDiffUtilCallback: DiffUtil.ItemCallback<Grave>(){
 
-
     override fun areItemsTheSame(oldItem: Grave, newItem: Grave): Boolean {
         return oldItem.id == newItem.id
     }
@@ -57,7 +54,6 @@ class GraveDiffUtilCallback: DiffUtil.ItemCallback<Grave>(){
     override fun areContentsTheSame(oldItem: Grave, newItem: Grave): Boolean {
         return oldItem == newItem
     }
-
 }
 class GraveListListener(val clickListener: (id: Int) -> Unit){
     fun onClick(grave: Grave){

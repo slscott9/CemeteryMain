@@ -25,7 +25,6 @@ class CemeteryDetailFragment : Fragment() {
     private lateinit var binding: FragmentCemeteryDetailBinding
     private lateinit var args: CemeteryDetailFragmentArgs
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

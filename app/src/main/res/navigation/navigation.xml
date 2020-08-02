@@ -12,11 +12,13 @@
         <action
             android:id="@+id/action_cemeteryListFragment_to_createFragment"
             app:destination="@id/createFragment"
-            app:enterAnim="@anim/fragment_close_enter"
-            app:popExitAnim="@android:anim/fade_out" />
+            app:enterAnim="@anim/fragment_close_enter" />
         <action
             android:id="@+id/action_cemeteryListFragment_to_cemeteryDetailFragment"
-            app:destination="@id/cemeteryDetailFragment" >
+            app:destination="@id/cemeteryDetailFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popUpToInclusive="false">
 
 
         </action>
@@ -31,10 +33,18 @@
         tools:layout="@layout/fragment_cemetery_detail" >
         <action
             android:id="@+id/action_cemeteryDetailFragment_to_createGraveFragment"
-            app:destination="@id/createGraveFragment" />
+            app:destination="@id/createGraveFragment"
+            app:enterAnim="@anim/fragment_fade_enter" />
         <argument
             android:name="id"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_cemeteryDetailFragment_to_cemeteryListFragment2"
+            app:destination="@id/cemeteryListFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popUpTo="@id/cemeteryListFragment"
+            app:popUpToInclusive="true" />
 
     </fragment>
 
@@ -47,7 +57,7 @@
         <action
             android:id="@+id/action_createFragment_to_cemeteryListFragment"
             app:destination="@id/cemeteryListFragment"
-            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
             app:popExitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
@@ -57,7 +67,10 @@
         tools:layout="@layout/fragment_create_grave" >
         <action
             android:id="@+id/action_createGraveFragment_to_cemeteryDetailFragment"
-            app:destination="@id/cemeteryDetailFragment" />
+            app:destination="@id/cemeteryDetailFragment"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popUpTo="@id/cemeteryDetailFragment"
+            app:popUpToInclusive="true" />
         <argument
             android:name="cemId"
             app:argType="integer" />

@@ -23,7 +23,7 @@ class CemeteryViewModel(val database: CemeteryDao, application: Application, val
 
 
     private val _cemeteryItemNumber =
-        MutableLiveData<Int>() //17. from CemeteryListFragment we pass the id of the recycler view row that was clicked into our view model
+        MutableLiveData<Int>()
     val cemeteryItemNumber
         get() = _cemeteryItemNumber //expose l
 
