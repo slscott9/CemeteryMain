@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="200dp"
-    android:layout_width="match_parent"
-    android:layout_margin="8dp"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="3dp"
-
     xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+    <variable
+        name="grave"
+        type="hfad.com.cemeteryapp1.database.Grave" />
+
+    <variable
+        name="clickListener"
+        type="hfad.com.cemeteryapp1.adapters.CemeteryListener" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_height="200dp"
+        android:layout_width="match_parent"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="3dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -15,6 +27,7 @@
 
             <TextView
                 android:id="@+id/graveNameTextview"
+                app:setGraveFirstName="@{grave}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -27,6 +40,7 @@
 
             <TextView
                 android:id="@+id/lastTextView"
+                app:setGraveLast="@{grave}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -38,6 +52,7 @@
 
             <TextView
                 android:id="@+id/birthTextView"
+                app:setGraveBirth="@{grave}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -48,6 +63,7 @@
 
             <TextView
                 android:id="@+id/deathTextview"
+                app:setGraveDeath="@{grave}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -59,6 +75,7 @@
 
             <TextView
                 android:id="@+id/marriageYearTextView"
+                app:setGraveMarried="@{grave}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -70,6 +87,7 @@
 
             <TextView
                 android:id="@+id/commentTextView"
+                app:setGraveComment="@{grave}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -80,6 +98,7 @@
 
             <TextView
                 android:id="@+id/graveNumberTextView"
+                app:setGraveNum="@{grave}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
@@ -134,9 +153,23 @@
                 app:layout_constraintBaseline_toBaselineOf="@+id/graveNumberTextView"
                 app:layout_constraintStart_toStartOf="@+id/cemmentDescipTv" />
 
+            <ImageView
+                android:id="@+id/deleteImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:layout_marginEnd="44dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_baseline_delete_forever_24" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.cardview.widget.CardView>
+
+
+    </layout>
 
 
 

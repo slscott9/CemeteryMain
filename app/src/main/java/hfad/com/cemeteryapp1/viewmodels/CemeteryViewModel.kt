@@ -53,6 +53,19 @@ class CemeteryViewModel(val database: CemeteryDao, application: Application, val
         }
     }
 
+    fun deleteCemetery(id: Int){
+        uiScope.launch {
+            deleteCem(id)
+        }
+    }
+
+    private suspend fun deleteCem(id: Int){
+        withContext(Dispatchers.IO){
+            database.deleteAllGraveWithId(id)
+            database.deleteCemetery(id)
+        }
+    }
+
     fun onUpdate(cemetery: Cemetery) {
         uiScope.launch {
             update(cemetery)
