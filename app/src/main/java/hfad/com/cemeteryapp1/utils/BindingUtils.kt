@@ -7,7 +7,9 @@ import hfad.com.cemeteryapp1.database.Cemetery
 import hfad.com.cemeteryapp1.database.Grave
 import org.w3c.dom.Text
 
-
+/*
+    Binding adapters are used in cemetery list item and grave list item
+ */
 
 @BindingAdapter("setCemeteryName")
 fun TextView.setCemeteryName(item: Cemetery?){

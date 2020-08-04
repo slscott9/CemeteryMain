@@ -20,9 +20,6 @@ import hfad.com.cemeteryapp1.viewmodels.CemeteryViewModel
 import hfad.com.cemeteryapp1.viewmodels.CemeteryViewModelFactory
 import kotlin.properties.Delegates
 
-//get the arguments from the bundle sent from CemeteryListFragment - the id that was clicked from rv was passed
-//get a reference to our database so we can pass it to the factory (constucts our cemDetailviewModel)
-//get our factory instance passing it the data source and id from cemeterylistfragment
 
 class CemeteryDetailFragment : Fragment() {
 
@@ -42,7 +39,7 @@ class CemeteryDetailFragment : Fragment() {
             R.layout.fragment_cemetery_detail,
             container,
             false
-        ) //get a reference to our binded layout
+        )
 
         val application = requireNotNull(this.activity).application
 

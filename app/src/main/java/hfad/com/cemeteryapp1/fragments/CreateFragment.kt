@@ -34,7 +34,7 @@ class CreateFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_create, container, false)
 
         val application = requireNotNull(this.activity).application
-        val dataSource = CemeteryDatabase.getInstance(application).cemeteryDao //MIGHT BE A PROBLEM   DIFFERENT FROM EXAMPLES
+        val dataSource = CemeteryDatabase.getInstance(application).cemeteryDao
         val viewModelFactory = CemeteryViewModelFactory(dataSource, application)
 
         createViewModel = ViewModelProvider(this, viewModelFactory).get(CemeteryViewModel::class.java)

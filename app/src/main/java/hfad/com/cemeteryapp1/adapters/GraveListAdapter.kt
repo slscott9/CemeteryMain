@@ -11,7 +11,6 @@ import hfad.com.cemeteryapp1.database.Grave
 import hfad.com.cemeteryapp1.databinding.GraveListItemBinding
 import kotlinx.android.synthetic.main.grave_list_item.view.*
 
-//val clickListener: GraveListListener
 
 class GraveListAdapter(val clickListener: GraveListListener): ListAdapter<Grave, GraveListAdapter.ViewHolder>(GraveDiffUtilCallback()){
 
@@ -29,6 +28,10 @@ class GraveListAdapter(val clickListener: GraveListListener): ListAdapter<Grave,
         holder.bind(item, clickListener)
     }
 
+    /*
+        set the current Grave object so binding can its properties
+        set the click listener for image view delete button
+     */
     class ViewHolder(val binding: GraveListItemBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(item: Grave, listener: GraveListListener){
             binding.grave = item
