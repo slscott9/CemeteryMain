@@ -10,7 +10,7 @@
 
     <variable
         name="clickListener"
-        type="hfad.com.cemeteryapp1.adapters.CemeteryListener" />
+        type="hfad.com.cemeteryapp1.adapters.GraveListListener" />
 
     </data>
 
@@ -155,6 +155,7 @@
 
             <ImageView
                 android:id="@+id/deleteImageView"
+                android:onClick="@{() -> clickListener.onClick(grave)}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"

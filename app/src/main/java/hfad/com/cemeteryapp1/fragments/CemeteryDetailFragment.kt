@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import hfad.com.cemeteryapp1.R
 import hfad.com.cemeteryapp1.adapters.GraveListAdapter
+import hfad.com.cemeteryapp1.adapters.GraveListListener
 import hfad.com.cemeteryapp1.database.CemeteryDatabase
 import hfad.com.cemeteryapp1.databinding.FragmentCemeteryDetailBinding
 import hfad.com.cemeteryapp1.viewmodels.CemeteryViewModel
@@ -63,10 +64,23 @@ class CemeteryDetailFragment : Fragment() {
                 CemeteryDetailFragmentDirections.actionCemeteryDetailFragmentToCreateGraveFragment(
                     args.id
                 )
-            )///
+            )
         }
 
-        val adapter = GraveListAdapter()
+        val adapter = GraveListAdapter(GraveListListener {
+            val dialogBuilder = AlertDialog.Builder(requireContext())
+            dialogBuilder.setMessage("Are you sure you want to delete this cemetery?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", DialogInterface.OnClickListener { dialogInterface, i ->
+                    cemeteryViewModel.deleteGrave(it)
+                })
+                .setNegativeButton("No", DialogInterface.OnClickListener { dialogInterface, i ->
+                    dialogInterface.cancel()
+                })
+            val alert = dialogBuilder.create()
+            alert.setTitle("Delete grave")
+            alert.show()
+        })
 
         cemeteryViewModel.cemeteryWithGraves.observe(viewLifecycleOwner, Observer {
             it?.let {
@@ -81,7 +95,6 @@ class CemeteryDetailFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.menu_delete_cemetery, menu)
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -91,7 +104,6 @@ class CemeteryDetailFragment : Fragment() {
             .setPositiveButton("Yes", DialogInterface.OnClickListener{
                     dialogInterface, i -> cemeteryViewModel.deleteCemetery(args.id)
                 this.findNavController().navigate(R.id.action_cemeteryDetailFragment_to_cemeteryListFragment2)
-
             })
             .setNegativeButton("No", DialogInterface.OnClickListener{
                     dialogInterface, i -> dialogInterface.cancel()

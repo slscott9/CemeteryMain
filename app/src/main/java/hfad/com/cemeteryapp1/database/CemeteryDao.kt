@@ -32,6 +32,9 @@ interface CemeteryDao {
     @Query("DELETE FROM cemeteries WHERE cemetery_id = :cemeteryID")
     fun deleteCemetery(cemeteryID: Int)
 
+    @Query("delete from graves where id == :id")
+    fun deleteGrave(id: Int)
+
     @Query("DELETE FROM graves WHERE cemetery_id = :cemeteryID")
     fun deleteAllGraveWithId(cemeteryID: Int)
 
